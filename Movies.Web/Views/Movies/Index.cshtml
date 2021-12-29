@@ -1,0 +1,86 @@
+﻿@model MoviesSearch
+<form>
+    <div>
+        <div class="col-md-8">
+            <input type="text" class="form-control" value="hrithik" asp-for="@Model.Search" >
+            
+        </div>
+        <div class="col-md-4 btn-group">
+            <a asp-action="GetByActorName" asp-controller="Movies" class=" btn-secondary" asp-route-strActorName="@Model.Search">Search</a>
+            <a asp-action="Get" asp-controller="Movies" class=" btn-warning" asp-route-strActorName="@Model.Search">Add Movies</a>
+        </div>
+
+    </div>
+    @if (Model != null && Model.Movies.Count > 0)
+    {
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th>
+                        SrNo
+                    </th>
+
+                    <th>
+                        Movie Name
+                    </th>
+
+
+                    <th>
+                        Year
+                    </th>
+
+
+                    <th>
+                        Actor Name
+                    </th>
+
+
+                    <th>
+                        Actress Name
+                    </th>
+
+
+                    <th>
+                        Director Name
+                    </th>
+                    <th>
+                        Edit
+                    </th>
+                </tr>
+                @foreach (var item in Model.Movies)
+                {
+            <tr>
+                <td>
+                    @item.srno
+                </td>
+
+                <td>
+                    @item.mname
+                </td>
+
+                <td>
+                    @item.years
+                </td>
+
+                <td>
+                    @item.actor
+                </td>
+
+
+                <td>
+                    @item.actress
+                </td>
+
+                <td>
+                    @item.dname
+                </td>
+                <td>
+                    <a asp-action="Get" asp-route-intSrNo="@item.srno">Edit</a>
+                </td>
+            </tr>
+                }
+
+            </table>
+        </div>
+    }
+</form>
